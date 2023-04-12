@@ -38,8 +38,6 @@ const ButtonComponent: FC<ButtonComponentProps> = ({
     size,
     ...props
 }) => {
-    console.log('cn(buttonVariants({variant, size, className}))', cn(buttonVariants({variant, size, className})))
-    console.log('children', children)
   return (
   <button 
     className={cn(buttonVariants({variant, size, className}))} 
