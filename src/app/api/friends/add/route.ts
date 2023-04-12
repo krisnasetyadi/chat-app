@@ -19,7 +19,6 @@ export async function POST(req: Request) {
     // })
     // const data = await RESTresponse.json() as {result: string}
     const idToAdd = await fetchRedis('get', `user:email:${emailToAdd}`) as string
-    console.log('dataa RESTresponse',idToAdd)
     // const idToAdd = data.result
     if (!idToAdd){
       return new Response('This person does not exist', { status: 400 })
