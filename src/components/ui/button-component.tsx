@@ -4,7 +4,7 @@ import { ButtonHTMLAttributes, FC } from 'react'
 import { cn } from '@/lib/utils'
 
 const buttonVariants = cva(
-    'active:scale-95 inline--flex items-center justify-center rounded-md text-sm font-medium transition-color focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 disabled:oppacity-50 disabled:pointer-esvents-none', 
+    'active:scale-95 inline-flex items-center justify-center rounded-md text-sm font-medium transition-color focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none', 
     {
         variants: {
             variant: {
@@ -16,22 +16,18 @@ const buttonVariants = cva(
                 sm: 'h-9 px-2',
                 lg: 'h-11 px-8'
             },
-   
         },
         defaultVariants: {
             variant: 'default',
             size: 'default'
-        },
-   
-       
+        },  
     }
 )
 
 export interface ButtonComponentProps 
         extends ButtonHTMLAttributes<HTMLButtonElement>, 
-        VariantProps<typeof buttonVariants > {
+         VariantProps<typeof buttonVariants> {
     isLoading?: boolean
-  
 }
 
 const ButtonComponent: FC<ButtonComponentProps> = ({
@@ -42,10 +38,17 @@ const ButtonComponent: FC<ButtonComponentProps> = ({
     size,
     ...props
 }) => {
-  return <button className={cn(buttonVariants({variant, size, className}))} disabled={isLoading} {...props}>
+    console.log('cn(buttonVariants({variant, size, className}))', cn(buttonVariants({variant, size, className})))
+    console.log('children', children)
+  return (
+  <button 
+    className={cn(buttonVariants({variant, size, className}))} 
+    disabled={isLoading} 
+    {...props}
+   >
     {isLoading ? <Loader2 className='mr-2 h-4 w-4 animate-spin' /> : null }
     {children}
-  </button>
+  </button>)
 }
 
 export default ButtonComponent
