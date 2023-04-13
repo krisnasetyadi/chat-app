@@ -6,6 +6,7 @@ TechStach:
 - Upstash
 - TailwindCSS
 - zod
+- Pusher (websocket)
 
 ## Getting Started
 
