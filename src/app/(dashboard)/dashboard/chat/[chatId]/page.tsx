@@ -17,7 +17,7 @@ interface pageProps {
 
 async function getChatMessages(chatId: string) {
     try {
-        const results: string[] = await fetchRedis('zrange',`chat:${chatId}:message`,0, -1)
+        const results: string[] = await fetchRedis('zrange',`chat:${chatId}:messages`,0, -1)
         const dbMessages = results.map((message) => JSON.parse(message) as Message) 
         const reverseDBMessages = dbMessages.reverse()
         const messages = messageArrayValidator.parse(reverseDBMessages)
@@ -65,8 +65,8 @@ const page = async ({params}: pageProps) => {
           </span>
         </div>
       </div>
-      <Messages sessionId={session.user.id} initialMessages={initialMessage} />
-      <ChatInput chatParner={chatPartner}  />
+      <Messages chatPartner={chatPartner} sessionImg={session.user.image} sessionId={session.user.id} initialMessages={initialMessage} />
+      <ChatInput chatId={chatId} chatParner={chatPartner}  />
     </div>
   )
 }

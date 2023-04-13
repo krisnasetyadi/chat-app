@@ -4,7 +4,6 @@ import { NextResponse } from 'next/server'
 
 export default withAuth(
     async function middleware(req){
-        console.log('req middleware', req)
         const pathname = req.nextUrl.pathname
 
         // manage route protection

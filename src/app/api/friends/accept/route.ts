@@ -24,7 +24,7 @@ export async function POST(req: Request) {
             return new Response('No friend request', { status: 400 })
         }
         await db.sadd(`user:${session.user.id}:friends`, idToAdd)
-        await db.sadd(`user:${idToAdd}:friend`, session.user.id)
+        await db.sadd(`user:${idToAdd}:friends`, session.user.id)
         // await db.srem(`user:${idToAdd}:outbound_friend_request`, session.user.id)
         await db.srem(`user:${session.user.id}:incoming_friend_requests`, idToAdd)
 
